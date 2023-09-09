@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Box Model Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .blurb {
+            text-align: justify;
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .black-box-img {
+            display: block;
+            max-width: 100%;
+            margin: 20px auto;
+        }
+        .esl {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: auto;
+        }
+        .system {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .footer-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: #FFF;
+            text-decoration: none;
+            display: inline-block;
+            transition: background-color 0.2s;
+            font-size: 16px;
+        }
+        .footer-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <img src="/static/esl_logo.png" alt="ESL Logo" class="esl">
+    <img src="/static/system_design_logo.svg" alt="System Design Logo" class="system">
+
+    <div class="content-container">
+        <h1>Black Box Model Visualization</h1>
+        <div class="blurb">
+            Below is the visual representation of your defined Black Box Model:
+        </div>
+        <img src="{{ url_for('download_file', filename=model_name+'.png') }}" alt="Generated Black Box Model">
+        
+        <div class="footer">
+            <a href="mailto:ahillman@mit.edu" class="footer-btn">Email me</a>
+            <a href="/build_another_bbm" class="footer-btn">Build another BBM</a>
+
+            <a href="https://github.com/ahillman89/BlackBoxImageGenerator" target="_blank" class="footer-btn">GitHub Repo</a>
+        </div>
+    </div>
+</body>
+</html>

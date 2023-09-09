@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualize Black Box Model</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            z-index: 3;
+            position: relative;
+        }
+
+        .content-container {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .blurb {
+            text-align: justify;
+            max-width: 500px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            z-index: 3;
+            position: relative;
+        }
+
+        form {
+    position: relative;
+    z-index: 3;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+input[type="text"], input[type="email"], input[type="number"], select {
+    width: 100%;
+    padding: 10px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #e2e2e2;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: border-color 0.2s;
+}
+
+input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus, select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+select {
+    padding: 10px;
+    appearance: none;
+    cursor: pointer;
+}
+input[type="submit"] {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 15px;
+    transition: background-color 0.2s;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+        .nasa-bg {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        .esl {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            height: auto;
+            z-index: 4; /* Increase z-index to ensure it's on top */
+        }
+
+        .system {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 100px;
+            height: auto;
+            z-index: 4; /* Increase z-index to ensure it's on top */
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <img src="/static/esl_logo.png" alt="ESL Logo" class="esl">
+    <img src="/static/system_design_logo.svg" alt="System Design Logo" class="system">
+
+    <form action="/show_BBM" method="post">
+        <input type="hidden" name="model_name" value="{{ model_name }}">
+        <input type="hidden" name="num_inputs" value="{{ num_inputs }}">
+        <input type="hidden" name="num_outputs" value="{{ num_outputs }}">
+
+        {% for i in range(num_inputs) %}
+        <label for="input_{{ i+1 }}">Input {{ i+1 }}/{{ num_inputs }}:</label>
+        <input type="text" id="input_{{ i+1 }}" name="input_{{ i+1 }}" required>
+        {% endfor %}
+
+        {% for i in range(num_outputs) %}
+        <label for="output_{{ i+1 }}">Output {{ i+1 }}/{{ num_outputs }}:</label>
+        <input type="text" id="output_{{ i+1 }}" name="output_{{ i+1 }}" required>
+        {% endfor %}
+
+        <input type="submit" value="Visualize">
+    </form>
+
+    <div class="footer">
+                    <a href="mailto:ahillman@mit.edu">Email Me</a>
+                </div>
+
+</body>
+
+</html>
